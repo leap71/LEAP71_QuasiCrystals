@@ -62,7 +62,7 @@ namespace Leap71
             /// Applies the specified coordinate trafo to each vertex of each face of the tile.
             /// These transformations are used to place sub-tiles correctly during the inflation process.
             /// </summary>
-            public void ApplyTrafo(BaseShape.TrafoFunc oTrafoFunc)
+            public void ApplyTrafo(BaseShape.fnVertexTransformation oTrafoFunc)
             {
                 foreach (IcosehedralFace sFace in m_aFaces)
                 {
