@@ -47,10 +47,8 @@ namespace Leap71
 
         public class QuasiCrystal
         {
-            protected List<QuasiTile>[] m_aTileGenerations;
-            protected float             m_fInitialTileSideLength;
-            protected float             m_fInitialTileRotationAngle;
-            protected uint              m_nGenerations;
+            List<QuasiTile>[] m_aTileGenerations;
+            uint              m_nGenerations;
 
 
             /// <summary>
@@ -64,7 +62,7 @@ namespace Leap71
                 m_aTileGenerations          = new List<QuasiTile>[(int)m_nGenerations];
                 m_aTileGenerations[0]       = aInitialTiles;
 
-                //grow generations
+                // grow generations
                 for (int i = 1; i < m_nGenerations; i++)
                 {
                     List<QuasiTile> aInflatedSubTiles   = new List<QuasiTile>();
@@ -77,7 +75,7 @@ namespace Leap71
                         }
                     }
 
-                    //remove dublicated tiles
+                    // remove dublicated tiles
                     aInflatedSubTiles       = aGetDeduplicatedSubTiles(aInflatedSubTiles);
                     m_aTileGenerations[i]   = aInflatedSubTiles;
                 }
@@ -94,7 +92,7 @@ namespace Leap71
                 m_aTileGenerations          = new List<QuasiTile>[(int)m_nGenerations];
                 m_aTileGenerations[0]       = QuasiTileInflation.aGetInflatedFace(sInitialFace);
 
-                //grow generations
+                // grow generations
                 for (int i = 1; i < m_nGenerations; i++)
                 {
                     List<QuasiTile> aInflatedSubTiles   = new List<QuasiTile>();
@@ -107,7 +105,7 @@ namespace Leap71
                         }
                     }
 
-                    //remove dublicated tiles
+                    // remove dublicated tiles
                     aInflatedSubTiles       = aGetDeduplicatedSubTiles(aInflatedSubTiles);
                     m_aTileGenerations[i]   = aInflatedSubTiles;
                 }
@@ -116,7 +114,7 @@ namespace Leap71
             /// <summary>
             /// Removes dublicated tiles that occur during infaltion.
             /// </summary>
-            protected List<QuasiTile> aGetDeduplicatedSubTiles(List<QuasiTile> aSubTiles)
+            List<QuasiTile> aGetDeduplicatedSubTiles(List<QuasiTile> aSubTiles)
             {
                 List<Vector3> aRefCentres               = new List<Vector3>();
                 List<QuasiTile> aDedublicatedSubTiles   = new List<QuasiTile>();
@@ -142,7 +140,7 @@ namespace Leap71
             {
                 List<QuasiTile> aTiles = new List<QuasiTile>();
 
-                //first row
+                // first row
                 QuasiTile oTile_000 = new QuasiTile_01(new LocalFrame());
                 QuasiTile oTile_001 = new QuasiTile_01(new LocalFrame());
                 QuasiTile oTile_002 = new QuasiTile_01(new LocalFrame());
@@ -154,7 +152,7 @@ namespace Leap71
                 oTile_003.AttachToOtherQuasiTile(0, oTile_002, 1);
                 oTile_004.AttachToOtherQuasiTile(1, oTile_000, 0);
 
-                //second row
+                // second row
                 QuasiTile oTile_005 = new QuasiTile_01(new LocalFrame());
                 QuasiTile oTile_006 = new QuasiTile_01(new LocalFrame());
                 QuasiTile oTile_007 = new QuasiTile_01(new LocalFrame());
@@ -167,7 +165,7 @@ namespace Leap71
                 oTile_008.AttachToOtherQuasiTile(0, oTile_003, 2);
                 oTile_009.AttachToOtherQuasiTile(0, oTile_004, 2);
 
-                //third row
+                // third row
                 QuasiTile oTile_010 = new QuasiTile_01(new LocalFrame());
                 QuasiTile oTile_011 = new QuasiTile_01(new LocalFrame());
                 QuasiTile oTile_012 = new QuasiTile_01(new LocalFrame());
@@ -180,7 +178,7 @@ namespace Leap71
                 oTile_013.AttachToOtherQuasiTile(0, oTile_008, 1);
                 oTile_014.AttachToOtherQuasiTile(0, oTile_009, 1);
 
-                //fourth row
+                // fourth row
                 QuasiTile oTile_015 = new QuasiTile_01(new LocalFrame());
                 QuasiTile oTile_016 = new QuasiTile_01(new LocalFrame());
                 QuasiTile oTile_017 = new QuasiTile_01(new LocalFrame());
@@ -308,8 +306,8 @@ namespace Leap71
             /// If the generation does not exist, an exception is thrown.
             /// The global, constant beam thickness can be specified.
             /// </summary>
-            public Voxels voxGetWireframe(  uint    nGen,
-                                            float   fBeamR)
+            public Voxels voxGetWireframe(  uint nGen,
+                                            float fBeamR)
             {
                 try
                 {

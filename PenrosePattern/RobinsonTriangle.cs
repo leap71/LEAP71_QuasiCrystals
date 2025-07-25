@@ -45,7 +45,7 @@ namespace Leap71
 			public      Vector3 m_vecA;
             public      Vector3 m_vecB;
             public      Vector3 m_vecC;
-            protected   Vector3 m_vecCentre;
+            private     Vector3 m_vecCentre;
 
             /// <summary>
             /// Triangle element that forms one of the two rhombic penrose tiles.

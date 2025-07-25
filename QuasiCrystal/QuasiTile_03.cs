@@ -65,8 +65,8 @@ namespace Leap71
                 float fTiltAngle            = (-fTiltAngleDeg) / 180f * MathF.PI;
 
 
-                //lower dome
-                //lower centre faces
+                // lower dome
+                // lower centre faces
                 List<IcosehedralFace> aLowerCentreFaces = new List<IcosehedralFace>();
                 for (int i = 0; i < 5; i++)
                 {
@@ -78,7 +78,7 @@ namespace Leap71
                 }
 
 
-                //lower side faces
+                // lower side faces
                 List<IcosehedralFace> aLowerSideFaces = new List<IcosehedralFace>();
                 for (int i = 0; i < 5; i++)
                 {
@@ -105,7 +105,7 @@ namespace Leap71
                 }
 
 
-                //mirror upper dome
+                // mirror upper dome
                 float fLowerZ       = VecOperations.vecExpressPointInFrame(oFrame0c, aLowerSideFaces[0].vecPt1).Z;
                 float fUpperZ       = VecOperations.vecExpressPointInFrame(oFrame0c, aLowerSideFaces[0].vecPt2).Z;
                 float fMaxZ         = fLowerZ + fUpperZ;
@@ -113,7 +113,7 @@ namespace Leap71
                 oFrame1c            = LocalFrame.oGetInvertFrame(oFrame1c, true, true);
 
 
-                //upper centre faces
+                // upper centre faces
                 List<IcosehedralFace> aUpperCentreFaces = new List<IcosehedralFace>();
                 for (int i = 0; i < 5; i++)
                 {
@@ -125,7 +125,7 @@ namespace Leap71
                 }
 
 
-                //upper side faces
+                // upper side faces
                 List<IcosehedralFace> aUpperSideFaces = new List<IcosehedralFace>();
                 for (int i = 0; i < 5; i++)
                 {
@@ -152,7 +152,7 @@ namespace Leap71
                 }
 
 
-                //combine faces
+                // combine faces
                 m_aFaces = new List<IcosehedralFace>();
                 m_aFaces.AddRange(aLowerCentreFaces);
                 m_aFaces.AddRange(aLowerSideFaces);

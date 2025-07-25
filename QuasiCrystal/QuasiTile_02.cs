@@ -161,7 +161,7 @@ namespace Leap71
                     }
 
 
-                    //flip lower faces
+                    // flip lower faces
                     for (int i = 0; i < aSideFaces.Count; i++)
                     {
                         aSideFaces[i].FlipAroundShortAxis();
@@ -169,7 +169,7 @@ namespace Leap71
                     }
 
 
-                    //combine faces
+                    // combine faces
                     m_aFaces = new List<IcosehedralFace>();
                     m_aFaces.Add(sFace1b);
                     m_aFaces.Add(sFace1t);

@@ -45,10 +45,10 @@ namespace Leap71
     {
         public abstract class QuasiTile
         {
-            public enum EPreviewFace          { NONE, AXIS, CONNECTOR };
-            protected   ColorFloat            m_clr;
-            protected   List<IcosehedralFace> m_aFaces;
-            protected   Vector3?              m_vecRoundedCentre;
+            public        enum                  EPreviewFace { NONE, AXIS, CONNECTOR };
+            protected     ColorFloat            m_clr;
+            protected     List<IcosehedralFace> m_aFaces;
+            protected     Vector3?              m_vecRoundedCentre;
 
             /// <summary>
             /// Retruns a list of the icosahedral faces of the tile.
@@ -134,7 +134,7 @@ namespace Leap71
             /// </summary>
             public void Preview(EPreviewFace ePreviewFace)
             {
-                //create mesh
+                // create mesh
                 Mesh mshTile            = new Mesh();
                 Vector3 vecCentre       = vecGetRoundedCentre();
                 foreach (IcosehedralFace sFace in m_aFaces)
@@ -149,7 +149,7 @@ namespace Leap71
                         MeshUtility.AddQuad(ref mshTile, sFace.vecPt1, sFace.vecPt4, sFace.vecPt3, sFace.vecPt2);
                     }
 
-                    //face preview
+                    // face preview
                     if (ePreviewFace == EPreviewFace.AXIS)
                     {
                         sFace.Preview(false);
@@ -194,7 +194,7 @@ namespace Leap71
             /// </summary>
             public void AttachToOtherQuasiTile(int iThisFaceIndex, QuasiTile oOtherTile, int iOtherFaceIndex, bool bSwitch = false)
             {
-                //check if the specified faces exist
+                // check if the specified faces exist
                 uint nThisFaces     = nGetNumberOfFaces();
                 uint nOtherFaces    = oOtherTile.nGetNumberOfFaces();
                 if (iThisFaceIndex >= nThisFaces)
@@ -206,7 +206,7 @@ namespace Leap71
                     throw new OtherFaceNotFoundException("Other face index exceeds number of faces on other quasi tile.");
                 }
 
-                //check if the specified faces have a compatible connector type
+                // check if the specified faces have a compatible connector type
                 if (m_aFaces[iThisFaceIndex].eConnector != oOtherTile.m_aFaces[iOtherFaceIndex].eConnector)
                 {
                     throw new ConnectorMismatchException("Connector types do not match.");
@@ -220,7 +220,7 @@ namespace Leap71
                 LocalFrame oOtherConnectorFrame  = oOtherTile.oGetConnectorFrame(iOtherFaceIndex, iSwitch);
                 LocalFrame oThisCurrentFaceFrame = LocalFrame.oGetInvertFrame(oGetConnectorFrame(iThisFaceIndex), true, false);
 
-                //update all coordinates of this quasi tile
+                // update all coordinates of this quasi tile
                 foreach (IcosehedralFace sFace in m_aFaces)
                 {
                     sFace.vecPt1 = VecOperations.vecExpressPointInFrame(oThisCurrentFaceFrame, sFace.vecPt1);
@@ -243,7 +243,7 @@ namespace Leap71
             }
 
 
-            //custom exceptions
+            // custom exceptions
             public class ThisFaceNotFoundException : Exception
             {
                 public ThisFaceNotFoundException(string strMessage) : base(strMessage) { }

@@ -50,6 +50,7 @@ namespace Leap71
                 oTile_02.Preview(QuasiTile.EPreviewFace.CONNECTOR);
                 oTile_03.Preview(QuasiTile.EPreviewFace.CONNECTOR);
                 oTile_04.Preview(QuasiTile.EPreviewFace.CONNECTOR);
+                Library.Log("Finished Task successfully.");
             }
 
             /// <summary>
@@ -57,18 +58,19 @@ namespace Leap71
             /// </summary>
             public static void CrystalFromFaceTask()
             {
-                //Step 1: Choose isosahedral face by connector type
+                // Step 1: Choose isosahedral face by connector type
                 IcosehedralFace sInitialFace    = new IcosehedralFace(new LocalFrame(), EDef.CENTRE, EConnector.LINE, 200);
-                //IcosehedralFace sInitialFace    = new IcosehedralFace(new LocalFrame(), EDef.CENTRE, EConnector.TRIANGLE, 200);
-                //IcosehedralFace sInitialFace    = new IcosehedralFace(new LocalFrame(), EDef.CENTRE, EConnector.ARROW, 200);
+                // IcosehedralFace sInitialFace    = new IcosehedralFace(new LocalFrame(), EDef.CENTRE, EConnector.TRIANGLE, 200);
+                // IcosehedralFace sInitialFace    = new IcosehedralFace(new LocalFrame(), EDef.CENTRE, EConnector.ARROW, 200);
                 sInitialFace.Preview(true);
 
-                //Step 2: Generate
+                // Step 2: Generate
                 uint nGenerations               = 2;    //choose 1 or 2, not higher!
                 QuasiCrystal oCrystal           = new QuasiCrystal(nGenerations, sInitialFace);
 
-                //Step 3: Show last generation
+                // Step 3: Show last generation
                 oCrystal.PreviewGeneration(nGenerations - 1, QuasiTile.EPreviewFace.NONE);
+                Library.Log("Finished Task successfully.");
             }
 
             /// <summary>
@@ -76,19 +78,20 @@ namespace Leap71
             /// </summary>
             public static void CrystalFromTileTask()
             {
-                //Step 1a: Choose elementary quasi-tile between 1 and 4 as a single list item
+                // Step 1a: Choose elementary quasi-tile between 1 and 4 as a single list item
                 QuasiTile oInitialTile          = new QuasiTile_04(new LocalFrame(), 50);
                 List<QuasiTile> aInitialTiles   = new List<QuasiTile>() { oInitialTile };
 
-                //Step 1b: Choose preset, hard-coded list of quasi-tiles
-                //List<QuasiTile> aInitialTiles   = QuasiCrystal.aGetFirstGenerationTiles();
+                //// Step 1b: Choose preset, hard-coded list of quasi-tiles
+                // List<QuasiTile> aInitialTiles   = QuasiCrystal.aGetFirstGenerationTiles();
 
-                //Step 2: Generate
+                // Step 2: Generate
                 uint nGenerations               = 2;    //choose 1 or 3, not higher!
                 QuasiCrystal oCrystal           = new QuasiCrystal(nGenerations, aInitialTiles);
 
-                //Step 3: Show last generation
+                // Step 3: Show last generation
                 oCrystal.PreviewGeneration(nGenerations - 1, QuasiTile.EPreviewFace.AXIS);
+                Library.Log("Finished Task successfully.");
             }
 
             /// <summary>
@@ -105,6 +108,7 @@ namespace Leap71
                 float fBeamRadius               = 1f;
                 Voxels voxCrystalWireframe      = oCrystal.voxGetWireframe(nGenerations - 1, fBeamRadius);
                 Sh.PreviewVoxels(voxCrystalWireframe, Cp.clrBlue);
+                Library.Log("Finished Task successfully.");
             }
         }
     }

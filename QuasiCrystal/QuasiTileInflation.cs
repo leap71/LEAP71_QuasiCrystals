@@ -51,7 +51,6 @@ namespace Leap71
             /// </summary>
 			public static List<QuasiTile> aGetInflatedFace(IcosehedralFace sFace)
 			{
-                //sFace.Preview();
                 Vector3 vecFaceNormal   = Vector3.Cross(sFace.vecLongAxis, sFace.vecShortAxis);
                 LocalFrame oFrame       = new LocalFrame(sFace.vecCentre, vecFaceNormal, sFace.vecLongAxis);
 
@@ -89,16 +88,16 @@ namespace Leap71
                 }
             }
 
-            protected static List<QuasiTile> aGetInflatedBlackLine(Vector3 vecStart, Vector3 vecEnd, Vector3 vecFaceNormal, float fCustomAngle)
+            static List<QuasiTile> aGetInflatedBlackLine(Vector3 vecStart, Vector3 vecEnd, Vector3 vecFaceNormal, float fCustomAngle)
             {
-                //target line arrangement
+                // target line arrangement
                 m_oTargetLength         = (vecEnd - vecStart).Length();
                 Vector3 vecTargetLocalZ = (vecEnd - vecStart).Normalize();
                 Vector3 vecTargetLocalX = vecFaceNormal;
                 m_oTargetFrame          = new LocalFrame(vecStart, vecTargetLocalZ, vecTargetLocalX);
 
 
-                //construct sub-tiles
+                // construct sub-tiles
                 List<QuasiTile> aInflatedTiles = new List<QuasiTile>();
                 QuasiTile oSubTile_000  = new QuasiTile_01(new LocalFrame());
                 QuasiTile oSubTile_001  = new QuasiTile_01(new LocalFrame());
@@ -139,7 +138,7 @@ namespace Leap71
                 aInflatedTiles.Add(oSubTile_009);
 
 
-                //current line arrangement
+                // current line arrangement
                 Vector3 vecS                = oSubTile_000.aGetFaces()[2].vecPt3;
                 Vector3 vecE                = oSubTile_009.aGetFaces()[4].vecPt1;
                 m_oCurrentLength            = (vecE - vecS).Length();
@@ -153,7 +152,7 @@ namespace Leap71
                 m_oCurrentFrame             = new LocalFrame(vecS, vecCurrentLocalZ, vecCurrentLocalX);
 
 
-                //transform onto target line
+                // transform onto target line
                 foreach (QuasiTile oTile in aInflatedTiles)
                 {
                     oTile.ApplyTrafo(vecTrafo);
@@ -161,16 +160,16 @@ namespace Leap71
                 return aInflatedTiles;
             }
 
-            protected static List<QuasiTile> aGetInflatedPurpleLine(Vector3 vecStart, Vector3 vecEnd, Vector3 vecFaceNormal, float fCustomAngle)
+            static List<QuasiTile> aGetInflatedPurpleLine(Vector3 vecStart, Vector3 vecEnd, Vector3 vecFaceNormal, float fCustomAngle)
             {
-                //target line arrangement
+                // target line arrangement
                 m_oTargetLength         = (vecEnd - vecStart).Length();
                 Vector3 vecTargetLocalZ = (vecEnd - vecStart).Normalize();
                 Vector3 vecTargetLocalX = vecFaceNormal;
                 m_oTargetFrame          = new LocalFrame(vecStart, vecTargetLocalZ, vecTargetLocalX);
 
 
-                //construct sub-tiles
+                // construct sub-tiles
                 List<QuasiTile> aInflatedTiles = new List<QuasiTile>();
                 QuasiTile oSubTile_000  = new QuasiTile_01(new LocalFrame());
                 QuasiTile oSubTile_001  = new QuasiTile_01(new LocalFrame());
@@ -194,7 +193,7 @@ namespace Leap71
                 aInflatedTiles.Add(oSubTile_Mid);
 
 
-                //current line arrangement
+                // current line arrangement
                 Vector3 vecS                = oSubTile_000.aGetFaces()[2].vecPt3;
                 Vector3 vecE                = oSubTile_Mid.aGetFaces()[4].vecPt1;
                 m_oCurrentLength            = (vecE - vecS).Length();
@@ -208,7 +207,7 @@ namespace Leap71
                 m_oCurrentFrame             = new LocalFrame(vecS, vecCurrentLocalZ, vecCurrentLocalX);
 
 
-                //transform onto target line
+                // transform onto target line
                 foreach (QuasiTile oTile in aInflatedTiles)
                 {
                     oTile.ApplyTrafo(vecTrafo);
@@ -217,11 +216,11 @@ namespace Leap71
             }
 
             //temps
-            protected static LocalFrame    m_oTargetFrame;
-            protected static float         m_oTargetLength;
-            protected static LocalFrame    m_oCurrentFrame;
-            protected static float         m_oCurrentLength;
-            protected static Vector3 vecTrafo(Vector3 vecPt)
+            static LocalFrame    m_oTargetFrame = new();
+            static LocalFrame    m_oCurrentFrame = new();
+            static float         m_oTargetLength;
+            static float         m_oCurrentLength;
+            static Vector3 vecTrafo(Vector3 vecPt)
             {
                 Vector3 vecRel      = VecOperations.vecExpressPointInFrame(m_oCurrentFrame, vecPt);
                 vecRel              *= (m_oTargetLength / m_oCurrentLength);

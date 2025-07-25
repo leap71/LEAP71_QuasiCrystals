@@ -45,9 +45,9 @@ namespace Leap71
     {
 		public class PenrosePattern
 		{
-            protected List<ISubDTile>[] m_aTileGenerations;
-            protected float             m_fInitialSide;
-            protected uint              m_nGenerations;
+            List<ISubDTile>[] m_aTileGenerations;
+            float             m_fInitialSide;
+            uint              m_nGenerations;
 
 
             /// <summary>
@@ -64,7 +64,7 @@ namespace Leap71
                 m_fInitialSide              = fInitialSide;
                 m_aTileGenerations[0]       = aGetDefaultInitialTiles();
 
-                //inflate generations
+                // inflate generations
                 for (int i = 1; i < m_nGenerations; i++)
                 {
                     List<ISubDTile> aInflatedSubTiles = new List<ISubDTile>();
@@ -73,7 +73,7 @@ namespace Leap71
                         aInflatedSubTiles.AddRange(xTile.aGetInflatedSubTiles());
                     }
 
-                    //remove dublicated tiles
+                    // remove dublicated tiles
                     aInflatedSubTiles       = aGetDeduplicatedSubTiles(aInflatedSubTiles);
                     m_aTileGenerations[i]   = aInflatedSubTiles;
                 }
@@ -82,7 +82,7 @@ namespace Leap71
             /// <summary>
             /// Removes dublicated tiles that occur during inflation.
             /// </summary>
-            protected List<ISubDTile> aGetDeduplicatedSubTiles(List<ISubDTile> aSubTiles)
+            List<ISubDTile> aGetDeduplicatedSubTiles(List<ISubDTile> aSubTiles)
             {
                 List<Vector3> aRefCentres               = new List<Vector3>();
                 List<ISubDTile> aDedublicatedSubTiles   = new List<ISubDTile>();
@@ -113,10 +113,10 @@ namespace Leap71
             /// Returns a default 5-symmetric set of tiles that can serve as
             /// starting condition to the penrose tile inflation.
             /// </summary>
-            protected List<ISubDTile> aGetDefaultInitialTiles()
+            List<ISubDTile> aGetDefaultInitialTiles()
             {
                 List<ISubDTile> aInitialTiles   = new List<ISubDTile>();
-                float fTheta                    = (108f) / 180f * MathF.PI;
+                float fTheta                    = 108f / 180f * MathF.PI;
                 uint nSymmetry                  = 5;
 
                 for (int i = 0; i < nSymmetry; i++)

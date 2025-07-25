@@ -73,13 +73,13 @@ namespace Leap71
                 Vector3 vecPointer_01   = VecOperations.vecRotateAroundAxis(vecPointer, -0.5f * m_fPsi, Vector3.UnitZ);
                 Vector3 vecPointer_02   = VecOperations.vecRotateAroundAxis(vecPointer, +0.5f * m_fPsi, Vector3.UnitZ);
 
-                //vertices
+                // vertices
                 vecPt1                  = new Vector3();
                 vecPt2                  = vecPt1 + vecPointer_01;
                 vecPt3                  = vecPt2 + vecPointer_02;
                 vecPt4                  = vecPt3 - vecPointer_01;
 
-                //transform onto frame
+                // transform onto frame
                 if (eDef == EDef.CENTRE)
                 {
                     vecCentre = vecPt1 + 0.5f * (vecPt3 - vecPt1);
@@ -182,7 +182,7 @@ namespace Leap71
                 Sh.PreviewLine(aShortAxis,  Cp.clrRed);
 
 
-                //preview connector
+                // preview connector
                 if (bShowConnector == true)
                 {
                     Lattice latConnector    = new Lattice();

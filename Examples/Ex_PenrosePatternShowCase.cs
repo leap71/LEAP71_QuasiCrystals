@@ -17,9 +17,14 @@
 //
 
 
+using PicoGK;
+using System.Numerics;
+
+
 namespace Leap71
 {
     using AperiodicTiling;
+    using ShapeKernel;
 
     namespace QuasiCrystalExamples
     {
@@ -30,14 +35,16 @@ namespace Leap71
             /// </summary>
             public static void Task()
             {
-                //Step 1: Choose number of subdivisions ("generations") between 1 and 10
+                // Step 1: Choose number of subdivisions ("generations") between 1 and 10
                 uint nGenerations = 5;
 
-                //Step 2: Generate
+                // Step 2: Generate
                 PenrosePattern oPattern = new PenrosePattern(nGenerations);
                
-                //Step 3: Show last generation
+                // Step 3: Show last generation
+                Sh.PreviewPoint(new Vector3(), 0.5f, Cp.clrRed);
                 oPattern.PreviewGeneration(nGenerations - 1);
+                Library.Log("Finished Task successfully.");
             }
         }
     }
